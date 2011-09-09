@@ -8,7 +8,7 @@
 
 #import "PXObject.h"
 
-#include "PCObject.h"
+#include "PXXObject.h"
 
 @implementation PXObject
 
@@ -18,9 +18,9 @@
 
 	if (self)
 	{
-		[self _makePXO];
+		[self _makePXX];
 
-		if (pxo == NULL)
+		if (pxx == NULL)
 		{
 			[self release];
 			return nil;
@@ -32,19 +32,19 @@
 
 - (void) dealloc
 {
-	if (pxo)
+	if (pxx)
 	{
-		PCObject *pco = (PCObject *)pxo;
-		pco->release();
+		PXXObject *pxo = (PXXObject *)pxx;
+		pxo->release();
 		pxo = NULL;
 	}
 
 	[super dealloc];
 }
 
-- (void) _makePXO
+- (void) _makePXX
 {
-	pxo = NULL;
+	pxx = NULL;
 }
 
 @end

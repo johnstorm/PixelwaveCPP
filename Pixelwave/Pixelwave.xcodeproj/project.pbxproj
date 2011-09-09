@@ -188,9 +188,9 @@
 		5256C8261305A2860001A379 /* xmalloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 5256C8101305A2860001A379 /* xmalloc.c */; };
 		5256C8271305A2860001A379 /* xmalloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 5256C8111305A2860001A379 /* xmalloc.h */; };
 		5256C8341305A5ED0001A379 /* tre-config.h in Headers */ = {isa = PBXBuildFile; fileRef = 5256C8331305A5ED0001A379 /* tre-config.h */; };
-		527B9EB1141A7F3900E16041 /* PCPrivateUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 527B9EB0141A7F3900E16041 /* PCPrivateUtils.h */; };
-		527B9ECB141A804F00E16041 /* PCMathUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 527B9EC9141A804F00E16041 /* PCMathUtils.h */; };
-		527B9ECC141A804F00E16041 /* PCMathUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 527B9ECA141A804F00E16041 /* PCMathUtils.c */; };
+		527B9EB1141A7F3900E16041 /* PXXPrivateUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 527B9EB0141A7F3900E16041 /* PXXPrivateUtils.h */; };
+		527B9ECB141A804F00E16041 /* PXXMathUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 527B9EC9141A804F00E16041 /* PXXMathUtils.h */; };
+		527B9ECC141A804F00E16041 /* PXXMathUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 527B9ECA141A804F00E16041 /* PXXMathUtils.c */; };
 		5286DBD913E0CFCA00E5971F /* CDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 5286DBC113E0CFCA00E5971F /* CDataScanner.h */; };
 		5286DBDA13E0CFCA00E5971F /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 5286DBC213E0CFCA00E5971F /* CDataScanner.m */; };
 		5286DBDB13E0CFCA00E5971F /* CFilteringJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5286DBC413E0CFCA00E5971F /* CFilteringJSONSerializer.h */; };
@@ -500,22 +500,22 @@
 		52D80AA3141A672500CD53E5 /* PXAtlasFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D809B0141A672500CD53E5 /* PXAtlasFrame.m */; };
 		52D80AA4141A672500CD53E5 /* PXTextureAtlas.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D809B1141A672500CD53E5 /* PXTextureAtlas.h */; };
 		52D80AA5141A672500CD53E5 /* PXTextureAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D809B2141A672500CD53E5 /* PXTextureAtlas.m */; };
-		52D80BFB141A673D00CD53E5 /* PCColorTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80AE7141A673D00CD53E5 /* PCColorTransform.h */; };
-		52D80BFC141A673D00CD53E5 /* PCColorTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80AE8141A673D00CD53E5 /* PCColorTransform.cpp */; };
-		52D80BFD141A673D00CD53E5 /* PCMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80AE9141A673D00CD53E5 /* PCMatrix.h */; };
-		52D80BFE141A673D00CD53E5 /* PCMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80AEA141A673D00CD53E5 /* PCMatrix.cpp */; };
-		52D80BFF141A673D00CD53E5 /* PCPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80AEB141A673D00CD53E5 /* PCPoint.h */; };
-		52D80C00141A673D00CD53E5 /* PCPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80AEC141A673D00CD53E5 /* PCPoint.cpp */; };
-		52D80C01141A673D00CD53E5 /* PCRectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80AED141A673D00CD53E5 /* PCRectangle.h */; };
-		52D80C02141A673D00CD53E5 /* PCRectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80AEE141A673D00CD53E5 /* PCRectangle.cpp */; };
-		52D80C03141A673D00CD53E5 /* PCTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80AEF141A673D00CD53E5 /* PCTransform.h */; };
-		52D80C04141A673D00CD53E5 /* PCTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80AF0141A673D00CD53E5 /* PCTransform.cpp */; };
-		52D80C05141A673D00CD53E5 /* PCVector3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80AF1141A673D00CD53E5 /* PCVector3D.h */; };
-		52D80C06141A673D00CD53E5 /* PCVector3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80AF2141A673D00CD53E5 /* PCVector3D.cpp */; };
-		52D80CC1141A68B600CD53E5 /* PCObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80CC0141A68B600CD53E5 /* PCObject.cpp */; };
-		52D80CC3141A68C300CD53E5 /* PCObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80CC2141A68C300CD53E5 /* PCObject.h */; };
-		52D80CC9141A6DF000CD53E5 /* PCHeaderUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80CC8141A6DF000CD53E5 /* PCHeaderUtils.h */; };
-		52D80CCB141A73A300CD53E5 /* PCGeom.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80CCA141A73A300CD53E5 /* PCGeom.h */; };
+		52D80BFB141A673D00CD53E5 /* PXXColorTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80AE7141A673D00CD53E5 /* PXXColorTransform.h */; };
+		52D80BFC141A673D00CD53E5 /* PXXColorTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80AE8141A673D00CD53E5 /* PXXColorTransform.cpp */; };
+		52D80BFD141A673D00CD53E5 /* PXXMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80AE9141A673D00CD53E5 /* PXXMatrix.h */; };
+		52D80BFE141A673D00CD53E5 /* PXXMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80AEA141A673D00CD53E5 /* PXXMatrix.cpp */; };
+		52D80BFF141A673D00CD53E5 /* PXXPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80AEB141A673D00CD53E5 /* PXXPoint.h */; };
+		52D80C00141A673D00CD53E5 /* PXXPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80AEC141A673D00CD53E5 /* PXXPoint.cpp */; };
+		52D80C01141A673D00CD53E5 /* PXXRectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80AED141A673D00CD53E5 /* PXXRectangle.h */; };
+		52D80C02141A673D00CD53E5 /* PXXRectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80AEE141A673D00CD53E5 /* PXXRectangle.cpp */; };
+		52D80C03141A673D00CD53E5 /* PXXTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80AEF141A673D00CD53E5 /* PXXTransform.h */; };
+		52D80C04141A673D00CD53E5 /* PXXTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80AF0141A673D00CD53E5 /* PXXTransform.cpp */; };
+		52D80C05141A673D00CD53E5 /* PXXVector3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80AF1141A673D00CD53E5 /* PXXVector3D.h */; };
+		52D80C06141A673D00CD53E5 /* PXXVector3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80AF2141A673D00CD53E5 /* PXXVector3D.cpp */; };
+		52D80CC1141A68B600CD53E5 /* PXXObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52D80CC0141A68B600CD53E5 /* PXXObject.cpp */; };
+		52D80CC3141A68C300CD53E5 /* PXXObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80CC2141A68C300CD53E5 /* PXXObject.h */; };
+		52D80CC9141A6DF000CD53E5 /* PXXHeaderUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80CC8141A6DF000CD53E5 /* PXXHeaderUtils.h */; };
+		52D80CCB141A73A300CD53E5 /* PXXGeom.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80CCA141A73A300CD53E5 /* PXXGeom.h */; };
 		52D80CCE141A780C00CD53E5 /* PXObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D80CCC141A780C00CD53E5 /* PXObject.h */; };
 		52D80CCF141A780C00CD53E5 /* PXObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52D80CCD141A780C00CD53E5 /* PXObject.mm */; };
 		52DAB9531278A946002894E7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DAB9521278A946002894E7 /* AVFoundation.framework */; };
@@ -706,9 +706,9 @@
 		5256C8101305A2860001A379 /* xmalloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmalloc.c; sourceTree = "<group>"; };
 		5256C8111305A2860001A379 /* xmalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmalloc.h; sourceTree = "<group>"; };
 		5256C8331305A5ED0001A379 /* tre-config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "tre-config.h"; sourceTree = "<group>"; };
-		527B9EB0141A7F3900E16041 /* PCPrivateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCPrivateUtils.h; sourceTree = "<group>"; };
-		527B9EC9141A804F00E16041 /* PCMathUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCMathUtils.h; sourceTree = "<group>"; };
-		527B9ECA141A804F00E16041 /* PCMathUtils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = PCMathUtils.c; sourceTree = "<group>"; };
+		527B9EB0141A7F3900E16041 /* PXXPrivateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXXPrivateUtils.h; sourceTree = "<group>"; };
+		527B9EC9141A804F00E16041 /* PXXMathUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXXMathUtils.h; sourceTree = "<group>"; };
+		527B9ECA141A804F00E16041 /* PXXMathUtils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = PXXMathUtils.c; sourceTree = "<group>"; };
 		5286DBC113E0CFCA00E5971F /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		5286DBC213E0CFCA00E5971F /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
 		5286DBC413E0CFCA00E5971F /* CFilteringJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFilteringJSONSerializer.h; sourceTree = "<group>"; };
@@ -1018,22 +1018,22 @@
 		52D809B0141A672500CD53E5 /* PXAtlasFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAtlasFrame.m; sourceTree = "<group>"; };
 		52D809B1141A672500CD53E5 /* PXTextureAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTextureAtlas.h; sourceTree = "<group>"; };
 		52D809B2141A672500CD53E5 /* PXTextureAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTextureAtlas.m; sourceTree = "<group>"; };
-		52D80AE7141A673D00CD53E5 /* PCColorTransform.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = PCColorTransform.h; sourceTree = "<group>"; };
-		52D80AE8141A673D00CD53E5 /* PCColorTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PCColorTransform.cpp; sourceTree = "<group>"; };
-		52D80AE9141A673D00CD53E5 /* PCMatrix.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = PCMatrix.h; sourceTree = "<group>"; };
-		52D80AEA141A673D00CD53E5 /* PCMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PCMatrix.cpp; sourceTree = "<group>"; };
-		52D80AEB141A673D00CD53E5 /* PCPoint.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = PCPoint.h; sourceTree = "<group>"; };
-		52D80AEC141A673D00CD53E5 /* PCPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PCPoint.cpp; sourceTree = "<group>"; };
-		52D80AED141A673D00CD53E5 /* PCRectangle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = PCRectangle.h; sourceTree = "<group>"; };
-		52D80AEE141A673D00CD53E5 /* PCRectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PCRectangle.cpp; sourceTree = "<group>"; };
-		52D80AEF141A673D00CD53E5 /* PCTransform.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = PCTransform.h; sourceTree = "<group>"; };
-		52D80AF0141A673D00CD53E5 /* PCTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PCTransform.cpp; sourceTree = "<group>"; };
-		52D80AF1141A673D00CD53E5 /* PCVector3D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = PCVector3D.h; sourceTree = "<group>"; };
-		52D80AF2141A673D00CD53E5 /* PCVector3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PCVector3D.cpp; sourceTree = "<group>"; };
-		52D80CC0141A68B600CD53E5 /* PCObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PCObject.cpp; sourceTree = "<group>"; };
-		52D80CC2141A68C300CD53E5 /* PCObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = PCObject.h; sourceTree = "<group>"; };
-		52D80CC8141A6DF000CD53E5 /* PCHeaderUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCHeaderUtils.h; sourceTree = "<group>"; };
-		52D80CCA141A73A300CD53E5 /* PCGeom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCGeom.h; sourceTree = "<group>"; };
+		52D80AE7141A673D00CD53E5 /* PXXColorTransform.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = PXXColorTransform.h; sourceTree = "<group>"; };
+		52D80AE8141A673D00CD53E5 /* PXXColorTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PXXColorTransform.cpp; sourceTree = "<group>"; };
+		52D80AE9141A673D00CD53E5 /* PXXMatrix.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = PXXMatrix.h; sourceTree = "<group>"; };
+		52D80AEA141A673D00CD53E5 /* PXXMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PXXMatrix.cpp; sourceTree = "<group>"; };
+		52D80AEB141A673D00CD53E5 /* PXXPoint.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = PXXPoint.h; sourceTree = "<group>"; };
+		52D80AEC141A673D00CD53E5 /* PXXPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PXXPoint.cpp; sourceTree = "<group>"; };
+		52D80AED141A673D00CD53E5 /* PXXRectangle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = PXXRectangle.h; sourceTree = "<group>"; };
+		52D80AEE141A673D00CD53E5 /* PXXRectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PXXRectangle.cpp; sourceTree = "<group>"; };
+		52D80AEF141A673D00CD53E5 /* PXXTransform.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = PXXTransform.h; sourceTree = "<group>"; };
+		52D80AF0141A673D00CD53E5 /* PXXTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PXXTransform.cpp; sourceTree = "<group>"; };
+		52D80AF1141A673D00CD53E5 /* PXXVector3D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = PXXVector3D.h; sourceTree = "<group>"; };
+		52D80AF2141A673D00CD53E5 /* PXXVector3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PXXVector3D.cpp; sourceTree = "<group>"; };
+		52D80CC0141A68B600CD53E5 /* PXXObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PXXObject.cpp; sourceTree = "<group>"; };
+		52D80CC2141A68C300CD53E5 /* PXXObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = PXXObject.h; sourceTree = "<group>"; };
+		52D80CC8141A6DF000CD53E5 /* PXXHeaderUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXXHeaderUtils.h; sourceTree = "<group>"; };
+		52D80CCA141A73A300CD53E5 /* PXXGeom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXXGeom.h; sourceTree = "<group>"; };
 		52D80CCC141A780C00CD53E5 /* PXObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXObject.h; sourceTree = "<group>"; };
 		52D80CCD141A780C00CD53E5 /* PXObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PXObject.mm; sourceTree = "<group>"; };
 		52DAB9521278A946002894E7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -2175,19 +2175,19 @@
 		52D80AE6141A673D00CD53E5 /* Geom */ = {
 			isa = PBXGroup;
 			children = (
-				52D80CCA141A73A300CD53E5 /* PCGeom.h */,
-				52D80AEB141A673D00CD53E5 /* PCPoint.h */,
-				52D80AEC141A673D00CD53E5 /* PCPoint.cpp */,
-				52D80AE7141A673D00CD53E5 /* PCColorTransform.h */,
-				52D80AE8141A673D00CD53E5 /* PCColorTransform.cpp */,
-				52D80AE9141A673D00CD53E5 /* PCMatrix.h */,
-				52D80AEA141A673D00CD53E5 /* PCMatrix.cpp */,
-				52D80AED141A673D00CD53E5 /* PCRectangle.h */,
-				52D80AEE141A673D00CD53E5 /* PCRectangle.cpp */,
-				52D80AEF141A673D00CD53E5 /* PCTransform.h */,
-				52D80AF0141A673D00CD53E5 /* PCTransform.cpp */,
-				52D80AF1141A673D00CD53E5 /* PCVector3D.h */,
-				52D80AF2141A673D00CD53E5 /* PCVector3D.cpp */,
+				52D80CCA141A73A300CD53E5 /* PXXGeom.h */,
+				52D80AEB141A673D00CD53E5 /* PXXPoint.h */,
+				52D80AEC141A673D00CD53E5 /* PXXPoint.cpp */,
+				52D80AE7141A673D00CD53E5 /* PXXColorTransform.h */,
+				52D80AE8141A673D00CD53E5 /* PXXColorTransform.cpp */,
+				52D80AE9141A673D00CD53E5 /* PXXMatrix.h */,
+				52D80AEA141A673D00CD53E5 /* PXXMatrix.cpp */,
+				52D80AED141A673D00CD53E5 /* PXXRectangle.h */,
+				52D80AEE141A673D00CD53E5 /* PXXRectangle.cpp */,
+				52D80AEF141A673D00CD53E5 /* PXXTransform.h */,
+				52D80AF0141A673D00CD53E5 /* PXXTransform.cpp */,
+				52D80AF1141A673D00CD53E5 /* PXXVector3D.h */,
+				52D80AF2141A673D00CD53E5 /* PXXVector3D.cpp */,
 			);
 			path = Geom;
 			sourceTree = "<group>";
@@ -2195,12 +2195,12 @@
 		52D80CBF141A68A100CD53E5 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				52D80CC2141A68C300CD53E5 /* PCObject.h */,
-				52D80CC0141A68B600CD53E5 /* PCObject.cpp */,
-				52D80CC8141A6DF000CD53E5 /* PCHeaderUtils.h */,
-				527B9EB0141A7F3900E16041 /* PCPrivateUtils.h */,
-				527B9EC9141A804F00E16041 /* PCMathUtils.h */,
-				527B9ECA141A804F00E16041 /* PCMathUtils.c */,
+				52D80CC2141A68C300CD53E5 /* PXXObject.h */,
+				52D80CC0141A68B600CD53E5 /* PXXObject.cpp */,
+				52D80CC8141A6DF000CD53E5 /* PXXHeaderUtils.h */,
+				527B9EB0141A7F3900E16041 /* PXXPrivateUtils.h */,
+				527B9EC9141A804F00E16041 /* PXXMathUtils.h */,
+				527B9ECA141A804F00E16041 /* PXXMathUtils.c */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2512,18 +2512,18 @@
 				52D80AA0141A672500CD53E5 /* PXRegexPattern.h in Headers */,
 				52D80AA2141A672500CD53E5 /* PXAtlasFrame.h in Headers */,
 				52D80AA4141A672500CD53E5 /* PXTextureAtlas.h in Headers */,
-				52D80BFB141A673D00CD53E5 /* PCColorTransform.h in Headers */,
-				52D80BFD141A673D00CD53E5 /* PCMatrix.h in Headers */,
-				52D80BFF141A673D00CD53E5 /* PCPoint.h in Headers */,
-				52D80C01141A673D00CD53E5 /* PCRectangle.h in Headers */,
-				52D80C03141A673D00CD53E5 /* PCTransform.h in Headers */,
-				52D80C05141A673D00CD53E5 /* PCVector3D.h in Headers */,
-				52D80CC3141A68C300CD53E5 /* PCObject.h in Headers */,
-				52D80CC9141A6DF000CD53E5 /* PCHeaderUtils.h in Headers */,
-				52D80CCB141A73A300CD53E5 /* PCGeom.h in Headers */,
+				52D80BFB141A673D00CD53E5 /* PXXColorTransform.h in Headers */,
+				52D80BFD141A673D00CD53E5 /* PXXMatrix.h in Headers */,
+				52D80BFF141A673D00CD53E5 /* PXXPoint.h in Headers */,
+				52D80C01141A673D00CD53E5 /* PXXRectangle.h in Headers */,
+				52D80C03141A673D00CD53E5 /* PXXTransform.h in Headers */,
+				52D80C05141A673D00CD53E5 /* PXXVector3D.h in Headers */,
+				52D80CC3141A68C300CD53E5 /* PXXObject.h in Headers */,
+				52D80CC9141A6DF000CD53E5 /* PXXHeaderUtils.h in Headers */,
+				52D80CCB141A73A300CD53E5 /* PXXGeom.h in Headers */,
 				52D80CCE141A780C00CD53E5 /* PXObject.h in Headers */,
-				527B9EB1141A7F3900E16041 /* PCPrivateUtils.h in Headers */,
-				527B9ECB141A804F00E16041 /* PCMathUtils.h in Headers */,
+				527B9EB1141A7F3900E16041 /* PXXPrivateUtils.h in Headers */,
+				527B9ECB141A804F00E16041 /* PXXMathUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2765,15 +2765,15 @@
 				52D80AA1141A672500CD53E5 /* PXRegexPattern.m in Sources */,
 				52D80AA3141A672500CD53E5 /* PXAtlasFrame.m in Sources */,
 				52D80AA5141A672500CD53E5 /* PXTextureAtlas.m in Sources */,
-				52D80BFC141A673D00CD53E5 /* PCColorTransform.cpp in Sources */,
-				52D80BFE141A673D00CD53E5 /* PCMatrix.cpp in Sources */,
-				52D80C00141A673D00CD53E5 /* PCPoint.cpp in Sources */,
-				52D80C02141A673D00CD53E5 /* PCRectangle.cpp in Sources */,
-				52D80C04141A673D00CD53E5 /* PCTransform.cpp in Sources */,
-				52D80C06141A673D00CD53E5 /* PCVector3D.cpp in Sources */,
-				52D80CC1141A68B600CD53E5 /* PCObject.cpp in Sources */,
+				52D80BFC141A673D00CD53E5 /* PXXColorTransform.cpp in Sources */,
+				52D80BFE141A673D00CD53E5 /* PXXMatrix.cpp in Sources */,
+				52D80C00141A673D00CD53E5 /* PXXPoint.cpp in Sources */,
+				52D80C02141A673D00CD53E5 /* PXXRectangle.cpp in Sources */,
+				52D80C04141A673D00CD53E5 /* PXXTransform.cpp in Sources */,
+				52D80C06141A673D00CD53E5 /* PXXVector3D.cpp in Sources */,
+				52D80CC1141A68B600CD53E5 /* PXXObject.cpp in Sources */,
 				52D80CCF141A780C00CD53E5 /* PXObject.mm in Sources */,
-				527B9ECC141A804F00E16041 /* PCMathUtils.c in Sources */,
+				527B9ECC141A804F00E16041 /* PXXMathUtils.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

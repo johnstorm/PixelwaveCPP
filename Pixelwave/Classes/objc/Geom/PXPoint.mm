@@ -38,7 +38,7 @@
  */
 
 #import "PXPoint.h"
-#include "PCPoint.h"
+#include "PXXPoint.h"
 
 /**
  * A PXPoint object represents a location in a two-dimensional coordinate
@@ -47,9 +47,9 @@
  */
 @implementation PXPoint
 
-- (void) _makePXO
+- (void) _makePXX
 {
-	pxo = new PCPoint();
+	pxx = new PXXPoint();
 }
 
 - (id) init
@@ -73,7 +73,7 @@
 
 	if (self)
 	{
-		((PCPoint *)(self->pxo))->set(x, y);
+		_pxToPXX(PXXPoint *, self)->set(x, y);
 	}
 
 	return self;
@@ -88,47 +88,47 @@
 
 - (id) copyWithZone:(NSZone *)zone
 {
-	return [[[self class] allocWithZone:zone] initWithX:((PCPoint *)(self->pxo))->x
-													  y:((PCPoint *)(self->pxo))->y];
+	return [[[self class] allocWithZone:zone] initWithX:_pxToPXX(PXXPoint *, self)->x
+													  y:_pxToPXX(PXXPoint *, self)->y];
 }
 
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"(x=%f, y=%f)",
-			((PCPoint *)(self->pxo))->x,
-			((PCPoint *)(self->pxo))->y];
+			_pxToPXX(PXXPoint *, self)->x,
+			_pxToPXX(PXXPoint *, self)->y];
 }
 
 #pragma mark Pooled Reset
 
 - (void) reset
 {
-	((PCPoint *)(self->pxo))->set(0.0f, 0.0f);
+	_pxToPXX(PXXPoint *, self)->set(0.0f, 0.0f);
 }
 
 #pragma mark Properties
 
 - (void) setX:(float)val
 {
-	((PCPoint *)(self->pxo))->x = val;
+	_pxToPXX(PXXPoint *, self)->x = val;
 }
 - (float) x
 {
-	return ((PCPoint *)(self->pxo))->x;
+	return _pxToPXX(PXXPoint *, self)->x;
 }
 
 - (void) setY:(float)val
 {
-	((PCPoint *)(self->pxo))->y = val;
+	_pxToPXX(PXXPoint *, self)->y = val;
 }
 - (float) y
 {
-	return ((PCPoint *)(self->pxo))->y;
+	return _pxToPXX(PXXPoint *, self)->y;
 }
 
 - (float) length
 {
-	return ((PCPoint *)(self->pxo))->length();
+	return _pxToPXX(PXXPoint *, self)->length();
 }
 
 #pragma mark Methods
@@ -147,7 +147,7 @@
  */
 - (void) setX:(float)x y:(float)y
 {
-	((PCPoint *)(self->pxo))->set(x, y);
+	_pxToPXX(PXXPoint *, self)->set(x, y);
 }
 
 #pragma mark Flash Methods
@@ -173,8 +173,8 @@
 	if (point == nil)
 		return nil;
 
-	PCPoint *pointPCO = ((PCPoint *)(point->pxo));
-	PCPoint pt = ((PCPoint *)(self->pxo))->add(*pointPCO);
+	PXXPoint *pointPCO = _pxToPXX(PXXPoint *, point);
+	PXXPoint pt = _pxToPXX(PXXPoint *, self)->add(*pointPCO);
 
 	return [[[PXPoint alloc] initWithX:pt.x y:pt.y] autorelease];
 }
@@ -200,8 +200,8 @@
 	if (point == nil)
 		return nil;
 
-	PCPoint *pointPCO = ((PCPoint *)(point->pxo));
-	PCPoint pt = ((PCPoint *)(self->pxo))->subtract(*pointPCO);
+	PXXPoint *pointPCO = _pxToPXX(PXXPoint *, point);
+	PXXPoint pt = _pxToPXX(PXXPoint *, self)->subtract(*pointPCO);
 
 	return [[[PXPoint alloc] initWithX:pt.x y:pt.y] autorelease];
 }
@@ -229,9 +229,9 @@
 	if (point == nil)
 		return nil;
 
-	PCPoint *pointPCO = ((PCPoint *)(point->pxo));
+	PXXPoint *pointPCO = _pxToPXX(PXXPoint *, point);
 
-	return ((PCPoint *)(self->pxo))->isEqual(*pointPCO);
+	return _pxToPXX(PXXPoint *, self)->isEqual(*pointPCO);
 }
 
 /**
@@ -244,7 +244,7 @@
  */
 - (void) normalize
 {
-	((PCPoint *)(self->pxo))->normalize();
+	_pxToPXX(PXXPoint *, self)->normalize();
 }
 
 /**
@@ -260,7 +260,7 @@
  */
 - (void) normalizeWithLength:(float)newLength
 {
-	((PCPoint *)(self->pxo))->normalize(newLength);
+	_pxToPXX(PXXPoint *, self)->normalize(newLength);
 }
 
 /**
@@ -278,7 +278,7 @@
  */
 - (void) offsetWithX:(float)dx y:(float)dy
 {
-	((PCPoint *)(self->pxo))->offset(dx, dy);
+	_pxToPXX(PXXPoint *, self)->offset(dx, dy);
 }
 
 /**
@@ -300,10 +300,10 @@
 	if (pt1 == nil || pt2 == nil)
 		return 0.0f;
 
-	PCPoint *pt1PCO = ((PCPoint *)(pt1->pxo));
-	PCPoint *pt2PCO = ((PCPoint *)(pt2->pxo));
+	PXXPoint *pt1PCO = _pxToPXX(PXXPoint *, pt1);
+	PXXPoint *pt2PCO = _pxToPXX(PXXPoint *, pt2);
 
-	return PCPoint::distance(*pt1PCO, *pt2PCO);
+	return PXXPoint::distance(*pt1PCO, *pt2PCO);
 }
 
 /**
@@ -325,10 +325,10 @@
 	if (pt1 == nil || pt2 == nil)
 		return 0.0f;
 
-	PCPoint *pt1PXC = ((PCPoint *)(pt1->pxo));
-	PCPoint *pt2PXC = ((PCPoint *)(pt2->pxo));
+	PXXPoint *pt1PXC = _pxToPXX(PXXPoint *, pt1);
+	PXXPoint *pt2PXC = _pxToPXX(PXXPoint *, pt2);
 
-	return PCPoint::angle(*pt1PXC, *pt2PXC);
+	return PXXPoint::angle(*pt1PXC, *pt2PXC);
 }
 
 /**
@@ -358,10 +358,10 @@
 	if (pt1 == nil || pt2 == nil)
 		return nil;
 
-	PCPoint *pt1PXC = ((PCPoint *)(pt1->pxo));
-	PCPoint *pt2PXC = ((PCPoint *)(pt2->pxo));
+	PXXPoint *pt1PXC = _pxToPXX(PXXPoint *, pt1);
+	PXXPoint *pt2PXC = _pxToPXX(PXXPoint *, pt2);
 
-	PCPoint point = PCPoint::interpolate(*pt1PXC, *pt2PXC, f);
+	PXXPoint point = PXXPoint::interpolate(*pt1PXC, *pt2PXC, f);
 
 	return [[[PXPoint alloc] initWithX:point.x y:point.y] autorelease];
 }
@@ -382,7 +382,7 @@
  */
 + (PXPoint *)pointUsingPolarCoordWithLen:(float)len angle:(float)angle
 {
-	PCPoint point = PCPoint::polar(len, angle);
+	PXXPoint point = PXXPoint::polar(len, angle);
 
 	return [[[PXPoint alloc] initWithX:point.x y:point.y] autorelease];
 }

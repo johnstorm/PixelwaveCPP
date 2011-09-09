@@ -43,8 +43,8 @@
 
 #import "PXPoint.h"
 
-#include "PCRectangle.h"
-#include "PCPoint.h"
+#include "PXXRectangle.h"
+#include "PXXPoint.h"
 
 /**
  * A PXRectangle object is an area defined by its position, as indicated by its
@@ -70,9 +70,9 @@
  */
 @implementation PXRectangle
 
-- (void) _makePXO
+- (void) _makePXX
 {
-	pxo = new PCRectangle();
+	pxx = new PXXRectangle();
 }
 
 - (id) init
@@ -99,7 +99,7 @@
 
 	if (self)
 	{
-		((PCRectangle *)(self->pxo))->set(x, y, width, height);
+		_pxToPXX(PXXRectangle *, self)->set(x, y, width, height);
 	}
 
 	return self;
@@ -109,104 +109,104 @@
 
 - (id) copyWithZone:(NSZone *)zone
 {
-	return [[[self class] allocWithZone:zone] initWithX:((PCRectangle *)(self->pxo))->x
-													  y:((PCRectangle *)(self->pxo))->y
-												  width:((PCRectangle *)(self->pxo))->width
-												 height:((PCRectangle *)(self->pxo))->height];
+	return [[[self class] allocWithZone:zone] initWithX:_pxToPXX(PXXRectangle *, self)->x
+													  y:_pxToPXX(PXXRectangle *, self)->y
+												  width:_pxToPXX(PXXRectangle *, self)->width
+												 height:_pxToPXX(PXXRectangle *, self)->height];
 }
 
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"(x=%f, y=%f, w=%f, h=%f)",
-			((PCRectangle *)(self->pxo))->x,
-			((PCRectangle *)(self->pxo))->y,
-			((PCRectangle *)(self->pxo))->width,
-			((PCRectangle *)(self->pxo))->height];
+			_pxToPXX(PXXRectangle *, self)->x,
+			_pxToPXX(PXXRectangle *, self)->y,
+			_pxToPXX(PXXRectangle *, self)->width,
+			_pxToPXX(PXXRectangle *, self)->height];
 }
 
 #pragma mark Pooled Reset
 
 - (void) reset
 {
-	((PCRectangle *)(self->pxo))->set(0.0f, 0.0f, 0.0f, 0.0f);
+	_pxToPXX(PXXRectangle *, self)->set(0.0f, 0.0f, 0.0f, 0.0f);
 }
 
 #pragma mark Properties
 
 - (void) setX:(float)val
 {
-	((PCRectangle *)(self->pxo))->x = val;
+	_pxToPXX(PXXRectangle *, self)->x = val;
 }
 - (float) x
 {
-	return ((PCRectangle *)(self->pxo))->x;
+	return _pxToPXX(PXXRectangle *, self)->x;
 }
 
 - (void) setY:(float)val
 {
-	((PCRectangle *)(self->pxo))->y = val;
+	_pxToPXX(PXXRectangle *, self)->y = val;
 }
 - (float) y
 {
-	return ((PCRectangle *)(self->pxo))->y;
+	return _pxToPXX(PXXRectangle *, self)->y;
 }
 
 - (void) setWidth:(float)val
 {
-	((PCRectangle *)(self->pxo))->width = val;
+	_pxToPXX(PXXRectangle *, self)->width = val;
 }
 - (float) width
 {
-	return ((PCRectangle *)(self->pxo))->width;
+	return _pxToPXX(PXXRectangle *, self)->width;
 }
 
 - (void) setHeight:(float)val
 {
-	((PCRectangle *)(self->pxo))->height = val;
+	_pxToPXX(PXXRectangle *, self)->height = val;
 }
 - (float) height
 {
-	return ((PCRectangle *)(self->pxo))->height;
+	return _pxToPXX(PXXRectangle *, self)->height;
 }
 
 - (void) setLeft:(float)left
 {
-	((PCRectangle *)(self->pxo))->setLeft(left);
+	_pxToPXX(PXXRectangle *, self)->setLeft(left);
 }
 
 - (float) left
 {
-	return ((PCRectangle *)(self->pxo))->left();
+	return _pxToPXX(PXXRectangle *, self)->left();
 }
 
 - (void) setRight:(float)right
 {
-	((PCRectangle *)(self->pxo))->setRight(right);
+	_pxToPXX(PXXRectangle *, self)->setRight(right);
 }
 
 - (float) right
 {
-	return ((PCRectangle *)(self->pxo))->right();
+	return _pxToPXX(PXXRectangle *, self)->right();
 }
 
 - (void) setTop:(float)top
 {
-	((PCRectangle *)(self->pxo))->setTop(top);
+	_pxToPXX(PXXRectangle *, self)->setTop(top);
 }
 
 - (float) top
 {
-	return ((PCRectangle *)(self->pxo))->top();
+	return _pxToPXX(PXXRectangle *, self)->top();
 }
 
 - (void) setBottom:(float)bottom
 {
-	((PCRectangle *)(self->pxo))->setBottom(bottom);
+	_pxToPXX(PXXRectangle *, self)->setBottom(bottom);
 }
 
 - (float) bottom
 {
-	return ((PCRectangle *)(self->pxo))->bottom();
+	return _pxToPXX(PXXRectangle *, self)->bottom();
 }
 
 - (void) setSize:(PXPoint *)point
@@ -214,13 +214,13 @@
 	if (point == nil)
 		return;
 
-	PCPoint *pointPXC = (PCPoint *)(point->pxo);
-	((PCRectangle *)(self->pxo))->setSize(*pointPXC);
+	PXXPoint *pointPXC = _pxToPXX(PXXPoint *, point);
+	_pxToPXX(PXXRectangle *, self)->setSize(*pointPXC);
 }
 
 - (PXPoint *)size
 {
-	PCPoint point = ((PCRectangle *)(self->pxo))->size();
+	PXXPoint point = _pxToPXX(PXXRectangle *, self)->size();
 	return [[[PXPoint alloc] initWithX:point.x y:point.y] autorelease];
 }
 
@@ -229,13 +229,13 @@
 	if (point == nil)
 		return;
 
-	PCPoint *pointPXC = (PCPoint *)(point->pxo);
-	((PCRectangle *)(self->pxo))->setBottomRight(*pointPXC);
+	PXXPoint *pointPXC = _pxToPXX(PXXPoint *, point);
+	_pxToPXX(PXXRectangle *, self)->setBottomRight(*pointPXC);
 }
 
 - (PXPoint *)bottomRight
 {
-	PCPoint point = ((PCRectangle *)(self->pxo))->bottomLeft();
+	PXXPoint point = _pxToPXX(PXXRectangle *, self)->bottomLeft();
 	return [[[PXPoint alloc] initWithX:point.x y:point.y] autorelease];
 }
 
@@ -244,13 +244,13 @@
 	if (point == nil)
 		return;
 
-	PCPoint *pointPXC = (PCPoint *)(point->pxo);
-	((PCRectangle *)(self->pxo))->setTopLeft(*pointPXC);
+	PXXPoint *pointPXC = _pxToPXX(PXXPoint *, point);
+	_pxToPXX(PXXRectangle *, self)->setTopLeft(*pointPXC);
 }
 
 - (PXPoint *)topLeft
 {
-	PCPoint point = ((PCRectangle *)(self->pxo))->topLeft();
+	PXXPoint point = _pxToPXX(PXXRectangle *, self)->topLeft();
 	return [[[PXPoint alloc] initWithX:point.x y:point.y] autorelease];
 }
 
@@ -273,7 +273,7 @@
  */
 - (void) setX:(float)x y:(float)y width:(float)width height:(float)height
 {
-	((PCRectangle *)(self->pxo))->set(x, y, width, height);
+	_pxToPXX(PXXRectangle *, self)->set(x, y, width, height);
 }
 
 #pragma mark Flash Methods
@@ -296,7 +296,7 @@
  */
 - (BOOL) containsX:(float)x y:(float)y
 {
-	return ((PCRectangle *)(self->pxo))->contains(x, y);
+	return _pxToPXX(PXXRectangle *, self)->contains(x, y);
 }
 
 /**
@@ -320,8 +320,8 @@
 	if (point == nil)
 		return NO;
 
-	PCPoint *pointPXC = (PCPoint *)(point->pxo);
-	return ((PCRectangle *)(self->pxo))->contains(*pointPXC);
+	PXXPoint *pointPXX = _pxToPXX(PXXPoint *, point);
+	return _pxToPXX(PXXRectangle *, self)->contains(*pointPXX);
 }
 
 /**
@@ -348,8 +348,8 @@
 	if (rect == nil)
 		return NO;
 
-	PCRectangle *rectPXC = (PCRectangle *)(rect->pxo);
-	return ((PCRectangle *)(self->pxo))->contains(*rectPXC);
+	PXXRectangle *rectPXC = _pxToPXX(PXXRectangle *, rect);
+	return _pxToPXX(PXXRectangle *, self)->contains(*rectPXC);
 }
 
 /**
@@ -375,8 +375,8 @@
 	if (rect == nil)
 		return NO;
 
-	PCRectangle *rectPXC = (PCRectangle *)(rect->pxo);
-	return ((PCRectangle *)(self->pxo))->isEqual(*rectPXC);
+	PXXRectangle *rectPXC = _pxToPXX(PXXRectangle *, rect);
+	return _pxToPXX(PXXRectangle *, self)->isEqual(*rectPXC);
 }
 
 /**
@@ -395,7 +395,7 @@
  */
 - (BOOL) isEmpty
 {
-	return ((PCRectangle *)(self->pxo))->isEmpty();
+	return _pxToPXX(PXXRectangle *, self)->isEmpty();
 }
 
 /**
@@ -413,7 +413,7 @@
  */
 - (void) inflateWithX:(float)dx y:(float)dy
 {
-	((PCRectangle *)(self->pxo))->inflate(dx, dy);
+	_pxToPXX(PXXRectangle *, self)->inflate(dx, dy);
 }
 
 /**
@@ -457,8 +457,8 @@
 	if (rect == nil)
 		return nil;
 
-	PCRectangle *rectPXC = (PCRectangle *)(rect->pxo);
-	PCRectangle ret = ((PCRectangle *)(self->pxo))->intersection(*rectPXC);
+	PXXRectangle *rectPXC = _pxToPXX(PXXRectangle *, rect);
+	PXXRectangle ret = _pxToPXX(PXXRectangle *, self)->intersection(*rectPXC);
 	return [[[PXRectangle alloc] initWithX:ret.x y:ret.y width:ret.width height:ret.height] autorelease];
 }
 
@@ -483,8 +483,8 @@
 	if (rect == nil)
 		return NO;
 
-	PCRectangle *rectPXC = (PCRectangle *)(rect->pxo);
-	return ((PCRectangle *)(self->pxo))->intersects(*rectPXC);
+	PXXRectangle *rectPXC = _pxToPXX(PXXRectangle *, rect);
+	return _pxToPXX(PXXRectangle *, self)->intersects(*rectPXC);
 }
 
 /**
@@ -501,7 +501,7 @@
  */
 - (void) offsetWithX:(float)dx y:(float)dy
 {
-	((PCRectangle *)(self->pxo))->offset(dx, dy);
+	_pxToPXX(PXXRectangle *, self)->offset(dx, dy);
 }
 
 /**
@@ -532,7 +532,7 @@
  */
 - (void) setEmpty
 {
-	((PCRectangle *)(self->pxo))->setEmpty();
+	_pxToPXX(PXXRectangle *, self)->setEmpty();
 }
 
 /**
@@ -556,8 +556,8 @@
 	if (rect == nil)
 		return nil;
 
-	PCRectangle *rectPXC = (PCRectangle *)(rect->pxo);
-	PCRectangle ret = ((PCRectangle *)(self->pxo))->unionRectangle(*rectPXC);
+	PXXRectangle *rectPXC = _pxToPXX(PXXRectangle *, rect);
+	PXXRectangle ret = _pxToPXX(PXXRectangle *, self)->unionRectangle(*rectPXC);
 	return [[[PXRectangle alloc] initWithX:ret.x y:ret.y width:ret.width height:ret.height] autorelease];
 }
 

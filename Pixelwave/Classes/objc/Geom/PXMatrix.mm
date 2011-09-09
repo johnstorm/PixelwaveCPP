@@ -40,8 +40,8 @@
 #import "PXMatrix.h"
 #import "PXPoint.h"
 
-#include "PCPoint.h"
-#include "PCMatrix.h"
+#include "PXXPoint.h"
+#include "PXXMatrix.h"
 
 /**
  * A PXMatrix object that represents a two-dimensional transformation matrix.
@@ -61,9 +61,9 @@
  */
 @implementation PXMatrix
 
-- (void) _makePXO
+- (void) _makePXX
 {
-	pxo = new PCMatrix();
+	pxx = new PXXMatrix();
 }
 
 - (id) init
@@ -97,7 +97,7 @@
 
 	if (self)
 	{
-		_objToPCO(PCMatrix *, self)->set(a, b, c, d, tx, ty);
+		_pxToPXX(PXXMatrix *, self)->set(a, b, c, d, tx, ty);
 	}
 
 	return self;
@@ -107,79 +107,79 @@
 
 - (id) copyWithZone:(NSZone *)zone
 {
-	return [[[self class] allocWithZone:zone] initWithA:_objToPCO(PCMatrix *, self)->a
-													  b:_objToPCO(PCMatrix *, self)->b
-													  c:_objToPCO(PCMatrix *, self)->c
-													  d:_objToPCO(PCMatrix *, self)->d
-													 tx:_objToPCO(PCMatrix *, self)->tx
-													 ty:_objToPCO(PCMatrix *, self)->ty];
+	return [[[self class] allocWithZone:zone] initWithA:_pxToPXX(PXXMatrix *, self)->a
+													  b:_pxToPXX(PXXMatrix *, self)->b
+													  c:_pxToPXX(PXXMatrix *, self)->c
+													  d:_pxToPXX(PXXMatrix *, self)->d
+													 tx:_pxToPXX(PXXMatrix *, self)->tx
+													 ty:_pxToPXX(PXXMatrix *, self)->ty];
 }
 
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"(a=%f, b=%f, c=%f, d=%f, tx=%f, ty=%f)",
-			_objToPCO(PCMatrix *, self)->a,
-			_objToPCO(PCMatrix *, self)->b,
-			_objToPCO(PCMatrix *, self)->c,
-			_objToPCO(PCMatrix *, self)->d,
-			_objToPCO(PCMatrix *, self)->tx,
-			_objToPCO(PCMatrix *, self)->ty];
+			_pxToPXX(PXXMatrix *, self)->a,
+			_pxToPXX(PXXMatrix *, self)->b,
+			_pxToPXX(PXXMatrix *, self)->c,
+			_pxToPXX(PXXMatrix *, self)->d,
+			_pxToPXX(PXXMatrix *, self)->tx,
+			_pxToPXX(PXXMatrix *, self)->ty];
 }
 
 #pragma mark Pooled Reset
 
 - (void) reset
 {
-	_objToPCO(PCMatrix *, self)->identity();
+	_pxToPXX(PXXMatrix *, self)->identity();
 }
 
 - (void) setA:(float)val
 {
-	_objToPCO(PCMatrix *, self)->a = val;
+	_pxToPXX(PXXMatrix *, self)->a = val;
 }
 - (float) a
 {
-	return _objToPCO(PCMatrix *, self)->a;
+	return _pxToPXX(PXXMatrix *, self)->a;
 }
 - (void) setB:(float)val
 {
-	_objToPCO(PCMatrix *, self)->b = val;
+	_pxToPXX(PXXMatrix *, self)->b = val;
 }
 - (float) b
 {
-	return _objToPCO(PCMatrix *, self)->b;
+	return _pxToPXX(PXXMatrix *, self)->b;
 }
 - (void) setC:(float)val
 {
-	_objToPCO(PCMatrix *, self)->c = val;
+	_pxToPXX(PXXMatrix *, self)->c = val;
 }
 - (float) c
 {
-	return _objToPCO(PCMatrix *, self)->c;
+	return _pxToPXX(PXXMatrix *, self)->c;
 }
 - (void) setD:(float)val
 {
-	_objToPCO(PCMatrix *, self)->d = val;
+	_pxToPXX(PXXMatrix *, self)->d = val;
 }
 - (float) d
 {
-	return _objToPCO(PCMatrix *, self)->d;
+	return _pxToPXX(PXXMatrix *, self)->d;
 }
 - (void) setTx:(float)val
 {
-	_objToPCO(PCMatrix *, self)->tx = val;
+	_pxToPXX(PXXMatrix *, self)->tx = val;
 }
 - (float) tx
 {
-	return _objToPCO(PCMatrix *, self)->tx;
+	return _pxToPXX(PXXMatrix *, self)->tx;
 }
 - (void) setTy:(float)val
 {
-	_objToPCO(PCMatrix *, self)->ty = val;
+	_pxToPXX(PXXMatrix *, self)->ty = val;
 }
 - (float) ty
 {
-	return _objToPCO(PCMatrix *, self)->ty;
+	return _pxToPXX(PXXMatrix *, self)->ty;
 }
 
 /**
@@ -205,7 +205,7 @@
  */
 - (void) setA:(float)a b:(float)b c:(float)c d:(float)d tx:(float)tx ty:(float)ty
 {
-	_objToPCO(PCMatrix *, self)->set(a, b, c, d, tx, ty);
+	_pxToPXX(PXXMatrix *, self)->set(a, b, c, d, tx, ty);
 }
 
 // A*B = B.concat(A)
@@ -228,8 +228,8 @@
 	if (m == nil)
 		return;
 
-	PCMatrix *mPCO = (PCMatrix *)(m->pxo);
-	_objToPCO(PCMatrix *, self)->concat(*mPCO);
+	PXXMatrix *mPXXO = _pxToPXX(PXXMatrix *, m);
+	_pxToPXX(PXXMatrix *, self)->concat(*mPXXO);
 }
 
 /**
@@ -243,7 +243,7 @@
  */
 - (void) identity
 {
-	_objToPCO(PCMatrix *, self)->identity();
+	_pxToPXX(PXXMatrix *, self)->identity();
 }
 
 /**
@@ -258,7 +258,7 @@
  */
 - (void) invert
 {
-	_objToPCO(PCMatrix *, self)->invert();
+	_pxToPXX(PXXMatrix *, self)->invert();
 }
 
 /**
@@ -274,7 +274,7 @@
  */
 - (void) rotate:(float)angle
 {
-	_objToPCO(PCMatrix *, self)->rotate(angle);
+	_pxToPXX(PXXMatrix *, self)->rotate(angle);
 }
 
 /**
@@ -291,7 +291,7 @@
  */
 - (void) scaleX:(float)sx y:(float)sy
 {
-	_objToPCO(PCMatrix *, self)->scale(sx, sy);
+	_pxToPXX(PXXMatrix *, self)->scale(sx, sy);
 }
 
 /**
@@ -308,7 +308,7 @@
  */
 - (void) translateX:(float)dx y:(float)dy
 {
-	_objToPCO(PCMatrix *, self)->translate(dx, dy);
+	_pxToPXX(PXXMatrix *, self)->translate(dx, dy);
 }
 
 /**
@@ -329,7 +329,7 @@
  */
 - (void) createBoxWithScaleX:(float)scaleX scaleY:(float)scaleY rotation:(float)rotation tx:(float)tx ty:(float)ty
 {
-	_objToPCO(PCMatrix *, self)->createBox(scaleX, scaleY, rotation, tx, ty);
+	_pxToPXX(PXXMatrix *, self)->createBox(scaleX, scaleY, rotation, tx, ty);
 }
 
 /**
@@ -348,8 +348,8 @@
  */
 - (PXPoint *)transformPoint:(PXPoint *)point
 {
-	PCPoint *pointPCO = _objToPCO(PCPoint *, point);
-	PCPoint retPoint = _objToPCO(PCMatrix *, self)->transform(*pointPCO);
+	PXXPoint *pointPXXO = _pxToPXX(PXXPoint *, point);
+	PXXPoint retPoint = _pxToPXX(PXXMatrix *, self)->transform(*pointPXXO);
 
 	return [[[PXPoint alloc] initWithX:retPoint.x y:retPoint.y] autorelease];
 }
@@ -371,8 +371,8 @@
  */
 - (PXPoint *)deltaTransformPoint:(PXPoint *)point
 {
-	PCPoint *pointPCO = (PCPoint *)(point->pxo);
-	PCPoint retPoint = _objToPCO(PCMatrix *, self)->deltaTransform(*pointPCO);
+	PXXPoint *pointPXXO = _pxToPXX(PXXPoint *, point);
+	PXXPoint retPoint = _pxToPXX(PXXMatrix *, self)->deltaTransform(*pointPXXO);
 
 	return [[[PXPoint alloc] initWithX:retPoint.x y:retPoint.y] autorelease];
 }

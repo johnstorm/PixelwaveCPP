@@ -41,7 +41,7 @@
 
 #import "PXMathUtils.h"
 
-#include "PCVector3D.h"
+#include "PXXVector3D.h"
 
 /**
  * A vector (or point) in a three-dimensional coordinate system,
@@ -50,9 +50,9 @@
  */
 @implementation PXVector3D
 
-- (void) _makePXO
+- (void) _makePXX
 {
-	pxo = new PCVector3D();
+	pxx = new PXXVector3D();
 }
 
 - (id) init
@@ -94,7 +94,7 @@
 
 	if (self)
 	{
-		((PCVector3D *)(self->pxo))->set(w, x, y, z);
+		_pxToPXX(PXXVector3D *, self)->set(w, x, y, z);
 	}
 
 	return self;
@@ -104,74 +104,74 @@
 
 - (id) copyWithZone:(NSZone *)zone
 {
-	return [[[self class] allocWithZone:zone] initWithX:((PCVector3D *)(self->pxo))->x
-													  y:((PCVector3D *)(self->pxo))->y
-													  z:((PCVector3D *)(self->pxo))->z
-													  w:((PCVector3D *)(self->pxo))->w];
+	return [[[self class] allocWithZone:zone] initWithX:_pxToPXX(PXXVector3D *, self)->x
+													  y:_pxToPXX(PXXVector3D *, self)->y
+													  z:_pxToPXX(PXXVector3D *, self)->z
+													  w:_pxToPXX(PXXVector3D *, self)->w];
 }
 
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"(x=%f, y=%f, z=%f, w=%f)",
-			((PCVector3D *)(self->pxo))->x,
-			((PCVector3D *)(self->pxo))->y,
-			((PCVector3D *)(self->pxo))->z,
-			((PCVector3D *)(self->pxo))->w];
+			_pxToPXX(PXXVector3D *, self)->x,
+			_pxToPXX(PXXVector3D *, self)->y,
+			_pxToPXX(PXXVector3D *, self)->z,
+			_pxToPXX(PXXVector3D *, self)->w];
 }
 
 #pragma mark Pooled Reset
 
 - (void) reset
 {
-	((PCVector3D *)(self->pxo))->set(0.0f, 0.0f, 0.0f, 0.0f);
+	_pxToPXX(PXXVector3D *, self)->set(0.0f, 0.0f, 0.0f, 0.0f);
 }
 
 #pragma mark Properties
 
 - (void) setW:(float)val
 {
-	((PCVector3D *)(self->pxo))->w = val;
+	_pxToPXX(PXXVector3D *, self)->w = val;
 }
 - (float) w
 {
-	return ((PCVector3D *)(self->pxo))->x;
+	return _pxToPXX(PXXVector3D *, self)->x;
 }
 
 - (void) setX:(float)val
 {
-	((PCVector3D *)(self->pxo))->w = val;
+	_pxToPXX(PXXVector3D *, self)->w = val;
 }
 - (float) x
 {
-	return ((PCVector3D *)(self->pxo))->x;
+	return _pxToPXX(PXXVector3D *, self)->x;
 }
 
 - (void) setY:(float)val
 {
-	((PCVector3D *)(self->pxo))->y = val;
+	_pxToPXX(PXXVector3D *, self)->y = val;
 }
 - (float) y
 {
-	return ((PCVector3D *)(self->pxo))->y;
+	return _pxToPXX(PXXVector3D *, self)->y;
 }
 
 - (void) setZ:(float)val
 {
-	((PCVector3D *)(self->pxo))->z = val;
+	_pxToPXX(PXXVector3D *, self)->z = val;
 }
 - (float) z
 {
-	return ((PCVector3D *)(self->pxo))->z;
+	return _pxToPXX(PXXVector3D *, self)->z;
 }
 
 - (float) length
 {
-	return ((PCVector3D *)(self->pxo))->length();
+	return _pxToPXX(PXXVector3D *, self)->length();
 }
 
 - (float) lengthSquared
 {
-	return ((PCVector3D *)(self->pxo))->lengthSquared();
+	return _pxToPXX(PXXVector3D *, self)->lengthSquared();
 }
 
 #pragma mark Additional Methods
@@ -190,7 +190,7 @@
  */
 - (void) setX:(float)x y:(float)y z:(float)z
 {
-	((PCVector3D *)(self->pxo))->set(x, y, z);
+	_pxToPXX(PXXVector3D *, self)->set(x, y, z);
 }
 
 /**
@@ -208,7 +208,7 @@
  */
 - (void) setX:(float)x y:(float)y z:(float)z w:(float)w
 {
-	((PCVector3D *)(self->pxo))->set(w, x, y, z);
+	_pxToPXX(PXXVector3D *, self)->set(w, x, y, z);
 }
 
 #pragma mark Flash Methods
@@ -234,8 +234,8 @@
 	if (vector == nil)
 		return nil;
 
-	PCVector3D *vectorPXC = (PCVector3D *)(vector->pxo);
-	PCVector3D ret = ((PCVector3D *)(self->pxo))->add(*vectorPXC);
+	PXXVector3D *vectorPXC = _pxToPXX(PXXVector3D *, vector);
+	PXXVector3D ret = _pxToPXX(PXXVector3D *, self)->add(*vectorPXC);
 
 	return [[[PXVector3D alloc] initWithX:ret.x y:ret.y z:ret.z w:ret.w] autorelease];
 }
@@ -261,8 +261,8 @@
 	if (vector == nil)
 		return nil;
 
-	PCVector3D *vectorPXC = (PCVector3D *)(vector->pxo);
-	PCVector3D ret = ((PCVector3D *)(self->pxo))->subtract(*vectorPXC);
+	PXXVector3D *vectorPXC = _pxToPXX(PXXVector3D *, vector);
+	PXXVector3D ret = _pxToPXX(PXXVector3D *, self)->subtract(*vectorPXC);
 
 	return [[[PXVector3D alloc] initWithX:ret.x y:ret.y z:ret.z w:ret.w] autorelease];
 }
@@ -286,8 +286,8 @@
 	if (vector == nil)
 		return nil;
 
-	PCVector3D *vectorPXC = (PCVector3D *)(vector->pxo);
-	PCVector3D ret = ((PCVector3D *)(self->pxo))->cross(*vectorPXC);
+	PXXVector3D *vectorPXC = _pxToPXX(PXXVector3D *, vector);
+	PXXVector3D ret = _pxToPXX(PXXVector3D *, self)->cross(*vectorPXC);
 
 	return [[[PXVector3D alloc] initWithX:ret.x y:ret.y z:ret.z w:ret.w] autorelease];
 }
@@ -309,8 +309,8 @@
 	if (vector == nil)
 		return;
 
-	PCVector3D *vectorPXC = (PCVector3D *)(vector->pxo);
-	((PCVector3D *)(self->pxo))->decrement(*vectorPXC);
+	PXXVector3D *vectorPXC = _pxToPXX(PXXVector3D *, vector);
+	_pxToPXX(PXXVector3D *, self)->decrement(*vectorPXC);
 }
 
 /**
@@ -330,8 +330,8 @@
 	if (vector == nil)
 		return 0.0f;
 
-	PCVector3D *vectorPXC = (PCVector3D *)(vector->pxo);
-	return ((PCVector3D *)(self->pxo))->dot(*vectorPXC);
+	PXXVector3D *vectorPXC = _pxToPXX(PXXVector3D *, vector);
+	return _pxToPXX(PXXVector3D *, self)->dot(*vectorPXC);
 }
 
 /**
@@ -353,8 +353,8 @@
 	if (vector == nil)
 		return NO;
 
-	PCVector3D *vectorPXC = (PCVector3D *)(vector->pxo);
-	return ((PCVector3D *)(self->pxo))->isEqual(*vectorPXC, allFour);
+	PXXVector3D *vectorPXC = _pxToPXX(PXXVector3D *, vector);
+	return _pxToPXX(PXXVector3D *, self)->isEqual(*vectorPXC, allFour);
 }
 
 /**
@@ -374,8 +374,8 @@
 	if (vector == nil)
 		return;
 
-	PCVector3D *vectorPXC = (PCVector3D *)(vector->pxo);
-	((PCVector3D *)(self->pxo))->increment(*vectorPXC);
+	PXXVector3D *vectorPXC = _pxToPXX(PXXVector3D *, vector);
+	_pxToPXX(PXXVector3D *, self)->increment(*vectorPXC);
 }
 
 /**
@@ -399,8 +399,8 @@
 	if (vector == nil)
 		return NO;
 
-	PCVector3D *vectorPXC = (PCVector3D *)(vector->pxo);
-	return ((PCVector3D *)(self->pxo))->isNearlyEqual(*vectorPXC, tolerance, allFour);
+	PXXVector3D *vectorPXC = _pxToPXX(PXXVector3D *, vector);
+	return _pxToPXX(PXXVector3D *, self)->isNearlyEqual(*vectorPXC, tolerance, allFour);
 }
 
 /**
@@ -414,7 +414,7 @@
  */
 - (void) negate
 {
-	((PCVector3D *)(self->pxo))->negate();
+	_pxToPXX(PXXVector3D *, self)->negate();
 }
 
 /**
@@ -430,7 +430,7 @@
  */
 - (float) normalize
 {
-	return ((PCVector3D *)(self->pxo))->normalize();
+	return _pxToPXX(PXXVector3D *, self)->normalize();
 }
 
 /**
@@ -444,7 +444,7 @@
  */
 - (void) project
 {
-	((PCVector3D *)(self->pxo))->project();
+	_pxToPXX(PXXVector3D *, self)->project();
 }
 
 /**
@@ -458,7 +458,7 @@
  */
 - (void) scaleBy:(float)scalar
 {
-	((PCVector3D *)(self->pxo))->scale(scalar);
+	_pxToPXX(PXXVector3D *, self)->scale(scalar);
 }
 
 /**
@@ -480,10 +480,10 @@
 	if (vectorA == nil || vectorB == nil)
 		return 0.0f;
 
-	PCVector3D *vectorAPXC = (PCVector3D *)(vectorA->pxo);
-	PCVector3D *vectorBPXC = (PCVector3D *)(vectorB->pxo);
+	PXXVector3D *vectorAPXC = _pxToPXX(PXXVector3D *, vectorA);
+	PXXVector3D *vectorBPXC = _pxToPXX(PXXVector3D *, vectorB);
 
-	return PCVector3D::angle(*vectorAPXC, *vectorBPXC);
+	return PXXVector3D::angle(*vectorAPXC, *vectorBPXC);
 }
 
 /**
@@ -505,10 +505,10 @@
 	if (vectorA == nil || vectorB == nil)
 		return 0.0f;
 
-	PCVector3D *vectorAPXC = (PCVector3D *)(vectorA->pxo);
-	PCVector3D *vectorBPXC = (PCVector3D *)(vectorB->pxo);
+	PXXVector3D *vectorAPXC = _pxToPXX(PXXVector3D *, vectorA);
+	PXXVector3D *vectorBPXC = _pxToPXX(PXXVector3D *, vectorB);
 
-	return PCVector3D::distance(*vectorAPXC, *vectorBPXC);
+	return PXXVector3D::distance(*vectorAPXC, *vectorBPXC);
 }
 
 /**
@@ -530,10 +530,10 @@
 	if (vectorA == nil || vectorB == nil)
 		return 0.0f;
 
-	PCVector3D *vectorAPXC = (PCVector3D *)(vectorA->pxo);
-	PCVector3D *vectorBPXC = (PCVector3D *)(vectorB->pxo);
+	PXXVector3D *vectorAPXC = _pxToPXX(PXXVector3D *, vectorA);
+	PXXVector3D *vectorBPXC = _pxToPXX(PXXVector3D *, vectorB);
 
-	return PCVector3D::distanceSquared(*vectorAPXC, *vectorBPXC);
+	return PXXVector3D::distanceSquared(*vectorAPXC, *vectorBPXC);
 }
 
 /**

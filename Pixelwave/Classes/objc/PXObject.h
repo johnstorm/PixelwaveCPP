@@ -6,17 +6,17 @@
 //  Copyright 2011 Spiralstorm Games. All rights reserved.
 //
 
-#define _objToPCO(_type_, _obj_) ((_type_)((_obj_)->pxo))
+#define _pxToPXX(_type_, _obj_) ((_type_)((_obj_)->pxx))
 
 @protocol PXObject <NSObject>
 @required;
-- (void) _makePXO;
+- (void) _makePXX;
 @end
 
 @interface PXObject : NSObject<PXObject>
 {
 @public
-	void *pxo;
+	void *pxx;
 }
 
 @end

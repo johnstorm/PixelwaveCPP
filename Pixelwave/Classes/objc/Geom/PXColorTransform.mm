@@ -38,7 +38,7 @@
  */
 
 #import "PXColorTransform.h"
-#include "PCColorTransform.h"
+#include "PXXColorTransform.h"
 
 #import "PXGLRenderer.h"
 
@@ -70,9 +70,9 @@
  */
 @implementation PXColorTransform
 
-- (void) _makePXO
+- (void) _makePXX
 {
-	pxo = new PCColorTransform();
+	pxx = new PXXColorTransform();
 }
 
 - (id) init
@@ -97,7 +97,7 @@
 
 	if (self)
 	{
-		_objToPCO(PCColorTransform *, self)->set(r, g, b, a);
+		_pxToPXX(PXXColorTransform *, self)->set(r, g, b, a);
 	}
 
 	return self;
@@ -107,26 +107,26 @@
 
 - (id) copyWithZone:(NSZone *)zone
 {
-	return [[[self class] allocWithZone:zone] initWithRedMult:_objToPCO(PCColorTransform *, self)->redMultiplier
-													greenMult:_objToPCO(PCColorTransform *, self)->greenMultiplier
-													 blueMult:_objToPCO(PCColorTransform *, self)->blueMultiplier
-													alphaMult:_objToPCO(PCColorTransform *, self)->alphaMultiplier];
+	return [[[self class] allocWithZone:zone] initWithRedMult:_pxToPXX(PXXColorTransform *, self)->redMultiplier
+													greenMult:_pxToPXX(PXXColorTransform *, self)->greenMultiplier
+													 blueMult:_pxToPXX(PXXColorTransform *, self)->blueMultiplier
+													alphaMult:_pxToPXX(PXXColorTransform *, self)->alphaMultiplier];
 }
 
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"(r=%f, g=%f, b=%f, a=%f)",
-			_objToPCO(PCColorTransform *, self)->redMultiplier,
-			_objToPCO(PCColorTransform *, self)->greenMultiplier,
-			_objToPCO(PCColorTransform *, self)->blueMultiplier,
-			_objToPCO(PCColorTransform *, self)->alphaMultiplier];
+			_pxToPXX(PXXColorTransform *, self)->redMultiplier,
+			_pxToPXX(PXXColorTransform *, self)->greenMultiplier,
+			_pxToPXX(PXXColorTransform *, self)->blueMultiplier,
+			_pxToPXX(PXXColorTransform *, self)->alphaMultiplier];
 }
 
 #pragma mark Pooled Reset
 
 - (void) reset
 {
-	_objToPCO(PCColorTransform *, self)->set(1.0f, 1.0f, 1.0f, 1.0f);
+	_pxToPXX(PXXColorTransform *, self)->set(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 /**
@@ -142,7 +142,7 @@
 						  blue:(float)blue
 						 alpha:(float)alpha
 {
-	_objToPCO(PCColorTransform *, self)->set(red, green, blue, alpha);
+	_pxToPXX(PXXColorTransform *, self)->set(red, green, blue, alpha);
 }
 
 /**
@@ -160,40 +160,40 @@
 						  blueValue:(unsigned char)blue
 						 alphaValue:(unsigned char)alpha
 {
-	_objToPCO(PCColorTransform *, self)->set(red, green, blue, alpha);
+	_pxToPXX(PXXColorTransform *, self)->set(red, green, blue, alpha);
 }
 
 - (void) setRedMultiplier:(float)val
 {
-	_objToPCO(PCColorTransform *, self)->redMultiplier = val;
+	_pxToPXX(PXXColorTransform *, self)->redMultiplier = val;
 }
 - (float) redMultiplier
 {
-	return _objToPCO(PCColorTransform *, self)->redMultiplier;
+	return _pxToPXX(PXXColorTransform *, self)->redMultiplier;
 }
 - (void) setGreenMultiplier:(float)val
 {
-	_objToPCO(PCColorTransform *, self)->greenMultiplier = val;
+	_pxToPXX(PXXColorTransform *, self)->greenMultiplier = val;
 }
 - (float) greenMultiplier
 {
-	return _objToPCO(PCColorTransform *, self)->greenMultiplier;
+	return _pxToPXX(PXXColorTransform *, self)->greenMultiplier;
 }
 - (void) setBlueMultiplier:(float)val
 {
-	_objToPCO(PCColorTransform *, self)->blueMultiplier = val;
+	_pxToPXX(PXXColorTransform *, self)->blueMultiplier = val;
 }
 - (float) blueMultiplier
 {
-	return _objToPCO(PCColorTransform *, self)->blueMultiplier;
+	return _pxToPXX(PXXColorTransform *, self)->blueMultiplier;
 }
 - (void) setAlphaMultiplier:(float)val
 {
-	_objToPCO(PCColorTransform *, self)->alphaMultiplier = val;
+	_pxToPXX(PXXColorTransform *, self)->alphaMultiplier = val;
 }
 - (float) alphaMultiplier
 {
-	return _objToPCO(PCColorTransform *, self)->alphaMultiplier;
+	return _pxToPXX(PXXColorTransform *, self)->alphaMultiplier;
 }
 
 /**
