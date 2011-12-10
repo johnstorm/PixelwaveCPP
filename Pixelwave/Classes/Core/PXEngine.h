@@ -40,9 +40,7 @@
 #ifndef PX_ENGINE_H
 #define PX_ENGINE_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#import <Foundation/Foundation.h>
 
 #include "PXGL.h"
 #include "PXColorUtils.h"
@@ -54,6 +52,10 @@ extern "C" {
 @class PXStage;
 @class PXDisplayObject;
 @class PXTextureData;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 //////////////
 // Creation //

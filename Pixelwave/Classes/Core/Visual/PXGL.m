@@ -43,7 +43,7 @@
 #import "PXGLRenderer.h"
 #import "PXGLException.h"
 
-#import "PXPrivateUtils.h"
+#include "PXPrivateUtils.h"
 #import "PXDebugUtils.h"
 
 #import "PXGLUtils.h"
@@ -147,16 +147,18 @@ void PXGLInit(unsigned width, unsigned height, float scaleFactor)
 	pxGLDefaultState.blendDestination = GL_ONE_MINUS_SRC_ALPHA;
 	
 	glBlendFunc(pxGLDefaultState.blendSource, pxGLDefaultState.blendDestination);
-	// TODO: This function should be used to make rendering to texture work
-	// better. It doesn't really make a difference when just rendering to the
-	// screen. So, glBlendFunc should be replaced by glBlendFuncSeparateOES
-	// everywhere. The problem is that glBlendFuncSeparateOES is only available
-	// in iOS 3.1 and above. So we need to check if
-	// (glBlendFuncSeparateOES != NULL) before calling it. Otherwise,
-	// glBlendFunc could just be used.
-	//
+	// TODO:	This function should be used to make rendering to texture work
+	//			better. It doesn't really make a difference when just rendering
+	//			to the screen. So, glBlendFunc should be replaced by
+	//			glBlendFuncSeparateOES everywhere. The problem is that
+	//			glBlendFuncSeparateOES is only available in iOS 3.1 and above.
+	//			So we need to check if (glBlendFuncSeparateOES != NULL) before
+	//			calling it. Otherwise, glBlendFunc could just be used.
+
+	// NOTE:	Could use glGetString(GL_EXTENSIONS) to figure out which
+	//			extensions are available.
 	//glBlendFuncSeparateOES(pxGLDefaultState.blendSource, pxGLDefaultState.blendDestination, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-	
+
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_LIGHTING);
 
@@ -1022,6 +1024,9 @@ void PXGLVertexPointer(GLint size, GLenum type, GLsizei stride, const GLvoid *po
 
 void PXGLShadeModel(GLenum mode)
 {
+	// TODO: When using this function to turn shade mode to flat, it doesn't
+	// work.
+
 	// If you are asking for flat
 	if (mode == GL_FLAT)
 	{
@@ -1031,6 +1036,46 @@ void PXGLShadeModel(GLenum mode)
 	{
 		PX_DISABLE_BIT(pxGLState.state, PX_GL_SHADE_MODEL_FLAT);
 	}
+}
+
+void PXGLGetBooleanv(GLenum pname, GLboolean *params)
+{
+	if (params == NULL)
+		return;
+
+	PXGLFlush();
+
+	glGetBooleanv(pname, params);
+}
+
+void PXGLGetFloatv(GLenum pname, GLfloat *params)
+{
+	if (params == NULL)
+		return;
+
+	PXGLFlush();
+
+	glGetFloatv(pname, params);
+}
+
+void PXGLGetIntegerv(GLenum pname, GLint *params)
+{
+	if (params == NULL)
+		return;
+
+	PXGLFlush();
+
+	glGetIntegerv(pname, params);
+}
+
+void PXGLGetTexParameteriv(GLenum target, GLenum pname, GLint *params)
+{
+	if (params == NULL)
+		return;
+
+	PXGLFlush();
+
+	glGetTexParameteriv(target, pname, params);
 }
 
 void PXGLTexEnvf(GLenum target, GLenum pname, GLfloat param)
@@ -1726,6 +1771,18 @@ void PXGLResetMatrixStack()
 	pxGLCurrentMatrixIndex = 0;
 	pxGLCurrentMatrix = pxGLMatrices;
 	PXGLLoadIdentity();
+}
+
+PXGLMatrix PXGLCurrentMatrix()
+{
+	PXGLMatrix mat;
+
+	if (pxGLCurrentMatrix)
+		mat = *pxGLCurrentMatrix;
+	else
+		PXGLMatrixIdentity(&mat);
+
+	return mat;
 }
 
 /*

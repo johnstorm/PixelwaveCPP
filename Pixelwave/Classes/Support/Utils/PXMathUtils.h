@@ -40,11 +40,11 @@
 #ifndef _PX_MATH_UTILS_H_
 #define _PX_MATH_UTILS_H_
 
+#include "PXHeaderUtils.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#import "PXHeaderUtils.h"
 
 #pragma mark -
 #pragma mark Macros
@@ -123,7 +123,8 @@ typedef struct
 #pragma mark Declerations
 #pragma mark -
 
-BOOL PXMathIsNan(float val);
+bool PXMathIsNan(float val);
+int PXMathSignbit(float val);
 
 float PXMathRandom();
 float PXMathFloatInRange(float min, float max);
@@ -168,7 +169,7 @@ PXInline void PXMathPoint3DSet(PXMathPoint3D *point, float x, float y, float z) 
 PXInline PXMathLine3D PXMathLine3DMake(float x1, float y1, float z1, float x2, float y2, float z2) PXAlwaysInline;
 PXInline void PXMathLine3DSet(PXMathLine3D *line, float x1, float y1, float z1, float x2, float y2, float z2) PXAlwaysInline;
 PXInline PXMathTriangle3D PXMathTriangle3DMake(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3) PXAlwaysInline;
-PXInline void PXMathTriangl3DeSet(PXMathTriangle3D *triangle, float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3) PXAlwaysInline;
+PXInline void PXMathTriangle3DSet(PXMathTriangle3D *triangle, float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3) PXAlwaysInline;
 
 float PXMathPointDistanceToLine(PXMathPoint *point, PXMathLine *line );
 bool PXMathPointInLine(PXMathPoint *ans, PXMathPoint *point, PXMathLine *line);
@@ -455,7 +456,7 @@ PXInline PXMathTriangle3D PXMathTriangle3DMake(float x1, float y1, float z1,
 	return triangle;
 }
 
-PXInline void PXMathTriangl3DeSet(PXMathTriangle3D *triangle,
+PXInline void PXMathTriangle3DSet(PXMathTriangle3D *triangle,
 								  float x1, float y1, float z1,
 								  float x2, float y2, float z2,
 								  float x3, float y3, float z3)

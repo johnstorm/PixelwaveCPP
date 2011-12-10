@@ -40,11 +40,11 @@
 #ifndef _PX_REGEX_UTILS_H_
 #define _PX_REGEX_UTILS_H_
 
+#include "PXHeaderUtils.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#import "PXHeaderUtils.h"
 
 PXInline_h BOOL PXRegexError(int error);
 

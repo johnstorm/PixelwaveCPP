@@ -40,8 +40,7 @@
 #ifndef _PX_ARRAY_BUFFER_H_
 #define _PX_ARRAY_BUFFER_H_
 
-#import "PXHeaderUtils.h"
-
+#include "PXHeaderUtils.h"
 #include "PXMathUtils.h"
 
 //#define PX_ARRAY_BUFFER_MAX_CHECKPOINTS 4
@@ -59,6 +58,7 @@
 		PX_UNIQUE_VAR(_bytes_) = (uint8_t *)((_array_)->array); \
 	} \
 \
+	if (PX_UNIQUE_VAR(_bytes_))\
 	for (PX_UNIQUE_VAR(_index_) = 0, (_obj_) = (void *)(PX_UNIQUE_VAR(_bytes_)); \
 		 PX_UNIQUE_VAR(_index_) < PX_UNIQUE_VAR(_count_); \
 		 ++PX_UNIQUE_VAR(_index_), (PX_UNIQUE_VAR(_bytes_)) += (PX_UNIQUE_VAR(_size_)), (_obj_) = (void *)(PX_UNIQUE_VAR(_bytes_)))
@@ -76,6 +76,7 @@
 		PX_UNIQUE_VAR(_bytes_) = (uint8_t *)((_array_)->array); \
 	} \
 \
+	if (PX_UNIQUE_VAR(_bytes_))\
 	for (PX_UNIQUE_VAR(_index_) = 0, (_obj_) = *((void **)(PX_UNIQUE_VAR(_bytes_))); \
 		 PX_UNIQUE_VAR(_index_) < PX_UNIQUE_VAR(_count_); \
 		 ++PX_UNIQUE_VAR(_index_), (PX_UNIQUE_VAR(_bytes_)) += (PX_UNIQUE_VAR(_size_)), (_obj_) = *((void **)(PX_UNIQUE_VAR(_bytes_))))
@@ -104,6 +105,7 @@ typedef struct
 #pragma mark -
 
 PXInline PXArrayBuffer *PXArrayBufferCreate();// PX_ALWAYS_INLINE;
+PXInline PXArrayBuffer *PXArrayBufferCreatev(size_t elementSize);// PX_ALWAYS_INLINE;
 PXInline void PXArrayBufferRelease(PXArrayBuffer *buffer);// PX_ALWAYS_INLINE;
 
 PXInline unsigned int PXArrayBufferCount(PXArrayBuffer *buffer);// PX_ALWAYS_INLINE;
@@ -131,11 +133,19 @@ PXInline void PXArrayBufferListUpdate(PXArrayBuffer *buffer,
 
 PXInline PXArrayBuffer *PXArrayBufferCreate()
 {
+	return PXArrayBufferCreatev(sizeof(int));
+}
+
+PXInline PXArrayBuffer *PXArrayBufferCreatev(size_t elementSize)
+{
+	if (elementSize == 0)
+		return NULL;
+
 	PXArrayBuffer *buffer = (PXArrayBuffer *)(calloc(1, sizeof(PXArrayBuffer)));
 
 	if (buffer != NULL)
 	{
-		buffer->_elementSize = sizeof(int);
+		buffer->_elementSize = sizeof(elementSize);
 		buffer->_byteCount = buffer->_elementSize * 32;
 		buffer->array = malloc(buffer->_byteCount);
 
@@ -148,6 +158,7 @@ PXInline PXArrayBuffer *PXArrayBufferCreate()
 
 	return buffer;
 }
+
 PXInline void PXArrayBufferRelease(PXArrayBuffer *buffer)
 {
 	if (buffer != NULL)
@@ -166,7 +177,8 @@ PXInline void PXArrayBufferResize(PXArrayBuffer *buffer, size_t size)
 	assert(buffer);
 	assert(buffer->array);
 
-	size = MAX(size, buffer->_minSize);
+	// MAX
+	size = (size > buffer->_minSize) ? size : buffer->_minSize;
 
 	if (size == buffer->_byteCount)
 		return;

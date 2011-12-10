@@ -48,39 +48,99 @@
 #import "PXObjectPool.h"
 #import "PXLinkedList.h"
 
-void PXUtilsDisplayObjectMultiplyUp(PXDisplayObject *displayObject, PXGLMatrix *matrix)
+#import "PXExceptionUtils.h"
+
+PXDisplayObject *PXUtilsFindCommonAncestor(PXDisplayObject *obj1, PXDisplayObject *obj2)
 {
-	PXDisplayObject *parent = displayObject->_parent;
+	if (obj1 == nil || obj2 == nil)
+		return nil;
 
-	if (!parent)
-		return;
+	unsigned int index;
 
-	PXGLMatrix *doMatrix = &(displayObject->_matrix);
-	PXGLMatrix matInv;
-	PXGLMatrixIdentity(&matInv);
-	PXGLMatrixMult(&matInv, &matInv, doMatrix);
-	PXGLMatrixInvert(&matInv);
-	PXGLMatrixMult(matrix, matrix, &matInv);
+	PXDisplayObject *root;
 
-	while (parent && parent->_parent)
+	// Create an array containing obj1 and all its ancestors.
+	unsigned int object1Count = 0;
+	root = obj1;
+
+	while (root != nil)
 	{
+		++object1Count;
+		root = root->_parent;
+	}
+
+	PXDisplayObject *obj1Ancestors[object1Count];
+	PXDisplayObject **curObj1Ancestor;
+
+	for (index = 0, root = obj1, curObj1Ancestor = obj1Ancestors; index < object1Count; ++index, root = root->_parent, ++curObj1Ancestor)
+	{
+		*curObj1Ancestor = root;
+	}
+
+	// Do the same for obj2.
+	unsigned int object2Count = 0;
+	root = obj2;
+	while (root != nil)
+	{
+		++object2Count;
+		root = root->_parent;
+	}
+
+	PXDisplayObject *obj2Ancestors[object2Count];
+	PXDisplayObject **curObj2Ancestor;
+
+	for (index = 0, root = obj2, curObj2Ancestor = obj2Ancestors; index < object2Count; ++index, root = root->_parent, ++curObj2Ancestor)
+	{
+		*curObj2Ancestor = root;
+	}
+
+	unsigned int minCount = MIN(object1Count, object2Count);
+	root = nil;
+
+	// Compare the elements of the arrays in reverse order until one is found
+	// that doesn't match. At this point, root is nil, so no need to worry about
+	// disjoint sets.
+	for (index = 0, curObj1Ancestor = obj1Ancestors + (object1Count - 1), curObj2Ancestor = obj2Ancestors + (object2Count - 1);
+		 index < minCount;
+		 ++index, --curObj1Ancestor, --curObj2Ancestor)
+	{
+		if (*curObj1Ancestor != *curObj2Ancestor)
+			break;
+
+		root = *curObj1Ancestor;
+	}
+
+	// Return the last element that matched.  
+	return root;
+}
+
+bool PXUtilsDisplayObjectMultiplyUp(PXDisplayObject *rootCoordinateSpace, PXDisplayObject *displayObject, PXGLMatrix *matrix)
+{
+	while (displayObject != rootCoordinateSpace)
+	{
+		if (displayObject == nil)
+			return false;
+
+		PXGLMatrix matInv;
 		PXGLMatrixIdentity(&matInv);
-		PXGLMatrixMult(&matInv, &matInv, &parent->_matrix);
+		PXGLMatrixMult(&matInv, &matInv, &displayObject->_matrix);
 		PXGLMatrixInvert(&matInv);
 		PXGLMatrixMult(matrix, matrix, &matInv);
 
-		parent = parent->_parent;
+		displayObject = displayObject->_parent;
 	}
+
+	return true;
 }
 
-bool PXUtilsDisplayObjectMultiplyDownContinue(PXDisplayObject *targetCoordinateSpace, PXDisplayObject *displayObject, PXGLMatrix *matrix)
+bool PXUtilsDisplayObjectMultiplyDown(PXDisplayObject *rootCoordinateSpace, PXDisplayObject *displayObject, PXGLMatrix *matrix)
 {
-	if (displayObject == targetCoordinateSpace)
+	if (displayObject == rootCoordinateSpace)
 		return true;
 
 	if (displayObject->_parent)
 	{
-		if (PXUtilsDisplayObjectMultiplyDownContinue(targetCoordinateSpace, displayObject->_parent, matrix))
+		if (PXUtilsDisplayObjectMultiplyDown(rootCoordinateSpace, displayObject->_parent, matrix))
 		{
 			PXGLMatrixMult(matrix, matrix, &(displayObject->_matrix));
 			return true;
@@ -88,20 +148,6 @@ bool PXUtilsDisplayObjectMultiplyDownContinue(PXDisplayObject *targetCoordinateS
 	}
 
 	return false;
-}
-void PXUtilsDisplayObjectMultiplyDown(PXDisplayObject *displayObject, PXGLMatrix *matrix)
-{
-	if (!displayObject)
-		return;
-
-	PXDisplayObject *root = displayObject->_parent;
-
-	while (root && root->_parent)
-	{
-		root = root->_parent;
-	}
-
-	PXUtilsDisplayObjectMultiplyDownContinue(root, displayObject, matrix);
 }
 
 CGPoint PXUtilsGlobalToLocal(PXDisplayObject *displayObject, CGPoint point)
@@ -115,7 +161,8 @@ CGPoint PXUtilsGlobalToLocal(PXDisplayObject *displayObject, CGPoint point)
 
 	PXGLMatrix matrix;
 	PXGLMatrixIdentity(&matrix);
-	PXUtilsDisplayObjectMultiplyUp(displayObject, &matrix);
+	if (!PXUtilsDisplayObjectMultiplyUp(PXEngineGetStage(), displayObject, &matrix))
+		PXThrow(PXArgumentException, @"Parameter displayObject must be on the stage.");
 
 	point = PXGLMatrixConvertPoint(&matrix, point);
 
@@ -132,7 +179,8 @@ CGPoint PXUtilsLocalToGlobal(PXDisplayObject *displayObject, CGPoint point)
 
 	PXGLMatrix matrix;
 	PXGLMatrixIdentity(&matrix);
-	PXUtilsDisplayObjectMultiplyDown(displayObject, &matrix);
+	if (!PXUtilsDisplayObjectMultiplyDown(PXEngineGetStage(), displayObject, &matrix))
+		PXThrow(PXArgumentException, @"Parameter displayObject must be on the stage.");
 
 	point = PXGLMatrixConvertPoint(&matrix, point);
 	//PX_GL_CONVERT_POINT_TO_MATRIX(matrix, point.x, point.y);

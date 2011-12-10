@@ -40,15 +40,15 @@
 #ifndef _PX_GL_H_
 #define _PX_GL_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "PXGLUtils.h"
 #include "PXGLState.h"
 #include "PXHeaderUtils.h"
 
 PXExtern const PXGLMatrix pxGLMatrixIdentity;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 GLfloat PXGLGetContentScaleFactor();
 GLfloat PXGLGetOneOverContentScaleFactor();
@@ -76,6 +76,11 @@ void PXGLTexCoordPointer(GLint size, GLenum type, GLsizei stride, const GLvoid *
 void PXGLTexParameteri(GLenum target, GLenum pname, GLint param);
 void PXGLVertexPointer(GLint size, GLenum type, GLsizei stride, const GLvoid *pointer);
 
+void PXGLGetBooleanv(GLenum pname, GLboolean *params);
+void PXGLGetFloatv(GLenum pname, GLfloat *params);
+void PXGLGetIntegerv(GLenum pname, GLint *params);
+void PXGLGetTexParameteriv(GLenum target, GLenum pname, GLint *params);
+
 void PXGLShadeModel(GLenum mode);
 
 void PXGLTexEnvf(GLenum target, GLenum pname, GLfloat param);
@@ -96,6 +101,7 @@ void PXGLRotate(GLfloat angle);
 void PXGLMultMatrix(PXGLMatrix *mat);
 void PXGLLoadMatrixToGL();
 void PXGLResetMatrixStack();
+PXGLMatrix PXGLCurrentMatrix();
 
 void PXGLPopColorTransform();
 void PXGLPushColorTransform();
